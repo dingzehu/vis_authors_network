@@ -1,6 +1,6 @@
 # visualisation_authors
 
-Project for Visualisation Exam
+Visualisation on co-authorship on pulications
 
 
 
