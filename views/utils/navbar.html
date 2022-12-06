@@ -1,0 +1,51 @@
+<!-- Navbar -->
+<nav class="navbar navbar-dark navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="assets/img/logo.png" height="35" style="transform: translateY(-1px); padding-right: 8px;"><span style="font-weight: 600;">Collaborator Network</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" href="#navbarNav" aria-controls="navbarNav"aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <form class="form-inline my-2 my-lg-0 navbar-form" action="/search" method="post">
+            <div class="input-group input-group-search mx-auto">
+                <input type="search" class="form-control" placeholder="Search..." value="22237490" name="search_string" aria-label="Search" aria-describedby="search-button-addon">
+                <select type="select" class="form-select" name="embedding" style="width: min-content; flex: initial;">
+                    <option selected>Embedding</option>
+                    <option>spectral_embedding_laplace</option>
+                    <option>pca_embedding</option>
+                    <option>node2vec_embedding</option>
+                    <option>kamada_kawai</option>
+                    <option>biHLouvain_embedding</option>
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-success" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      </svg>
+                  </button>
+              </div>
+          </div>
+      </form>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link text-nowrap" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-nowrap" href="#">Feedback</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-nowrap" href="#">Donate</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</nav>
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 12px; position: absolute;left:calc(50% - 40%); width: 80%; z-index: 1;">
+At the moment <b>only</b> semantic scholar ids work
+in the search bar! You can search for an author
+<a href="https://www.semanticscholar.org/author" target="_blank" rel = "noopener">here</a> and get the id from the Web Address "https://www.semanticscholar.org/author/[author_Id]".
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>

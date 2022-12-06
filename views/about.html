@@ -1,0 +1,39 @@
+<%- include ('../views/utils/header.html'); %>
+<%- include ('../views/utils/navbar.html'); %>
+
+<div class="container-fluid d-flex flex-column">
+        <div class="row flex-grow-1 justify-content-center background">
+                <div class="col-lg-8 bg-dark ">
+                        <div class="index details vertical-center" style="padding: 2%;">
+                                <div>
+                                        <h1 class="card-title">Collaborator Network</h1>
+                                        <hr>
+                                        <p style="text-align:justify"; class="card-text">
+                                                Research has been the cornerstone of the evolution of the modern world. The development of the internet has been significantly removed the distance between researchers around the world. Nowadays researchers are virtually connected sitting thousands miles away and performing the state of the art research.
+                                        </p>
+                                        <p style="text-align:justify"; class="card-text">
+                                                This project aims to be a showcase about how the researchers connected to each other, for a same research goal. The graph with nodes and edges shows the correlation among authors who have published the same papers. The nodes in the graph represent the information about the corresponding authors, whereas the edges illustrate the connections between authors. The width of edges shows the number of papers that two corresponding authors have published together, whereas the diameter of nodes shows the number of papers that the authors have published. The multiple edges from nodes to other nodes mark the authors at prior are having multiple collaborations with multiple authors on same research topics. 
+					</p>
+					<p style="text-align:justify"; class="card-text">
+						For the data support in this project, we use the dataset “NIPS papers from 1987 to 2020” from Kaggle [1] and Semantic Scholar [2] which is an artificial-intelligence backed search engine for academic publications. By entering the semantic scholar author ID, the connections among the author with the input ID and other authors will be presented as a graph. On the right, a chart regarding the number of publications of the author with the input semantic scholar author ID.
+					</p>
+                                        <div class="vertical-center">
+                                        <div class="card-text col-lg-8 center" style="font-weight: 600; font-size: 1em;">
+					<p>
+                                        <a href="https://www.kaggle.com/yerbaaaa/nips-19872020">[1]NIPS paper from 1987 to 2020</a>
+                                        <br>
+                                        <a href="https://www.semanticscholar.org/">[2]Semantic Scholar | AI-Powered Research Tool</a>
+                                        </p>
+
+                                                <hr >
+                                                Give it a try and search for your favourite author above!
+                                        </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+</div>
+
+<%- include ('../views/utils/footer_small.html'); %>

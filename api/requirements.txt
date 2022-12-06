@@ -1,0 +1,7 @@
+filecache
+git+https://github.com/semohr/node2vec.git
+scikit-network
+numpy
+pandas
+sklearn
+python-Levenshtein

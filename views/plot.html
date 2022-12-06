@@ -1,0 +1,157 @@
+<%- include ('./utils/header.html'); %>
+<%- include ('./utils/navbar.html'); %>
+
+<!-- Content --> 
+<div class="container-fluid d-flex flex-column">
+  <div class="row flex-grow-1 justify-content-center bg-light">
+    <div class="col-lg-8 col-xxl-9">
+      <div class="graph" style="margin-top: 5px;">
+        <div id="network" style="height: calc(100vh - 61px - 29px - 10px);"></div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-xxl-3 bg-dark">
+      <div class="details" style="margin-top: 5px;">
+        <div id="details">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Echarts -->
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js"></script>
+
+<!-- Own JS scripts -->
+<script type="text/javascript" src="assets/js/authornetwork.js"></script>
+<script type="text/javascript">
+// based on prepared DOM, initialize echarts instance
+var networkChart = echarts.init(document.getElementById('network'),null, {
+  renderer: 'svg'
+});
+
+// Loading animation until graph data is retrieved
+url = "/api/?author="+<%- JSON.stringify(author_id) %>+"&embedding="+<%- JSON.stringify(embedding) %>; //TODO
+networkChart.showLoading();
+getJSON(url, function(err, data) {
+  if (err !== null) {
+    networkChart.hideLoading();
+    console.log("Could not load json! Something wrong with the api?" + err);
+    document.getElementById('network').innerHtml = "Could not load the data! Is something wrong with the api?"
+  } else {
+    plotNetwork(data);
+    networkChart.hideLoading();
+  }
+});
+
+// Update details
+getAuthorDetails(<%- JSON.stringify(author_id) %>);
+
+function plotNetwork(data){
+  /* Function to setup the plotting of the network in the div defined above.
+  We map the data (loaded via json) to the plotting routine.
+  */
+  console.log(data);
+  networkChart.setOption(option = {
+    animationDurationUpdate: 1500,
+    animationEasingUpdate: 'quinticInOut',
+    series: [{
+      type: 'graph',
+      layout: 'none',
+      labelLayout: {
+        hideOverlap: true
+      },
+      //progressiveThreshold: 700,
+      data: data.nodes.map(function (node) {
+        // Some color manipulation
+        // Convert to rgb and make the fill color a bit lighter
+        return {
+          x: node.x,
+          y: node.y,
+          id: node.id,
+          category: node.institution,
+          name: node.label,
+          symbolSize: node.size*5,
+        };
+      }),
+      edges: data.edges.map(function (edge) {
+        return {
+          source: edge.sourceID,
+          target: edge.targetID,
+          lineStyle:{
+            width: edge.size*2,
+          },
+        };
+      }),
+      categories: data.categories,
+      label:{
+        show: true,
+        fontFamily : 'Iter',
+        color: "black",
+        position: 'top',
+        overflow: 'break',
+      },
+      emphasis: {
+        focus: 'adjacency',
+        label: {
+          position: 'top',
+          show: true
+        }
+      },
+      scaleLimit: {
+          min: 0.4,
+          max: 2
+      },
+      roam: true,
+    }]
+  }, true);
+
+  // Setup onclick event for nodes
+  networkChart.on('click', (params) => {
+    if (params.dataType === 'node') {
+      console.log(params.data);
+      getAuthorDetails(params.data.id);
+    }
+  })
+
+  //Update gradient this is kinda hack but works :)
+  /*
+  options = networkChart.getOption();
+  var getColor = (idToLookFor) => {
+    n = options.color.length
+    for (var i = 0; i < data.nodes.length; i++) {
+        if (data.nodes[i].id == idToLookFor) {
+          i = data.nodes[i].institution[0]
+          color = options.color[(i % n + n) % n];
+          return color
+        }
+    }
+  }
+  for (var edge of options.series[0].edges){
+    //Get colors 
+    console.log(edge.source);
+    csource = getColor(edge.source);
+    console.log(csource);
+    ctarget = getColor(edge.target);
+    edge.lineStyle.color = new echarts.graphic.LinearGradient(0, 0, 1, 1,[{
+        offset: 0, color: ctarget // the color at 0%
+      },{
+        offset: 1, color: csource// the color at 100%
+      }]
+    )
+  }
+
+  networkChart.setOption(options)
+  */
+
+}
+window.onresize = function() {
+  networkChart.resize();
+};
+
+
+
+
+</script>
+
+<%- include ('./utils/footer.html'); %>
