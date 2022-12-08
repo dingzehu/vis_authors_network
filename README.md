@@ -2,8 +2,28 @@
 
 Visualisation on co-authorship on pulications
 
+<div id="header" align="center">
+  <img src="https://github.com/dingzehu/vis_authors_network/blob/master/node2vec.png" width="300"/>
+</div>
 
+- Size of nodes: Number of papers published (per author)
+- Size of edges: Number of papers published together (pairwise)
+- Color: Institution, legend disabled because it occupied nearly the whole screen (a lot of institutions)
+- Details: simple histogram (publications per year)
 
+## Techonogies used
+- Front-End: CSS, html, javscript (echarts, bootstrap)
+- Middleware: NodeJS (Express, PythonShell)
+- Back-End: Python (numpy, pandas, lecache, ...)
+- Embedding
+	- Embedding is a low-dimensional representation of high-dimensional data.
+	- All embedding techniques attempt to reduce the dimensions of data, but meanwhile to preserve the "key" information in the data.
+	- In this use case, the attempt is to obtain coordinates which can be presented on a 2-dimension graph, via using embedding techniques through a high-dimension adjacency matrix.
+## Dataflow
+- Data pre-processing - get the proper data format
+- Scrape author's ID from Semantic Scholar
+- Transform processed data to adjacency matrix for further embedding, to get coordinates
+- Plot embedded graph and statistic data
 
 ## How to run the website
 
