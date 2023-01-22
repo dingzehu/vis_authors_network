@@ -3,7 +3,7 @@
 Visualisation on co-authorship on pulications
 
 <div id="header" align="center">
-  <img src="https://github.com/dingzehu/vis_authors_network/img/ex_page.png" width="300"/>
+  <img src="https://github.com/dingzehu/vis_authors_network/blob/master/img/ex_page.png" width="600"/>
 </div>
 
 - Size of nodes: Number of papers published (per author)
@@ -21,8 +21,9 @@ Visualisation on co-authorship on pulications
 	- In this use case, the attempt is to obtain coordinates which can be presented on a 2-dimension graph, via using embedding techniques through a high-dimension adjacency matrix.
 ## Dataflow
 <div id="header" align="center">
-  <img src="https://github.com/dingzehu/vis_authors_network/img/WorkflowOverview.png" width="300"/>
+  <img src="https://github.com/dingzehu/vis_authors_network/blob/master/img/WorkflowOverview.png" width="600"/>
 </div>
+
 - Data pre-processing - get the proper data format
 - Scrape author's ID from Semantic Scholar
 - Transform processed data to adjacency matrix for further embedding, to get coordinates
